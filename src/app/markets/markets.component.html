@@ -1,3 +1,14 @@
-<p>
-  markets works!
-</p>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side">
+        <app-markets-filter [categories]="categories" (filter)="onFilter($event)" (reset)="onReset()"></app-markets-filter>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="content">
+            <app-markets-table [markets]="filteredMarkets" (buy)="onBuy($event)"></app-markets-table>
+            <button mat-fab color="accent" class="filter-button" (click)="sidenav.toggle()">
+                <mat-icon>filter_list</mat-icon>
+            </button>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,16 @@
+table {
+    width: 100%;
+}
+
+tr {
+    height: 68px !important;
+}
+
+.quantity-control, .buy-button {
+    visibility: hidden;
+}
+
+table tr:hover .quantity-control,
+table tr:hover .buy-button {
+    visibility: visible;
+}

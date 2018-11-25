@@ -3,11 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// Angular CLI environemnt
+import { environment } from '../environments/environment';
+
 // @ngrx
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { reducers, metaReducers } from './reducers';
-import { AppEffects } from './app.effects';
+
+// not used in production
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { storeFreeze } from 'ngrx-store-freeze';
 
 // @angular/material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -17,21 +22,25 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 
 // Components
-import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AppComponent } from './components/app/app.component';
+import { NavComponent } from './components/nav/nav.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http';
+
+export const metaReducers: MetaReducer<any>[] = !environment.production ? [storeFreeze] : [];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavComponent,
-    PageNotFoundComponent
-  ],
+  declarations: [AppComponent, NavComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AppEffects]),
+    HttpClientModule,
+    StoreModule.forRoot({}, { metaReducers }),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production
+    }),
     MatToolbarModule,
     MatButtonModule,
     AppRoutingModule
@@ -39,4 +48,4 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

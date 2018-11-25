@@ -1,0 +1,14 @@
+{
+  "/api/markets": {
+    "target": "http://localhost:3000/markets",
+    "secure": false
+  },
+  "/api/stocks": {
+    "target": "http://localhost:3000/stocks",
+    "secure": false
+  },
+  "/api/balance": {
+    "target": "http://localhost:3000/balance",
+    "secure": false
+  }
+}

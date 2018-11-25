@@ -1,0 +1,26 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side">
+    <app-markets-filter
+      [categories]="categories$ | async"
+      (filter)="loadMarkets($event)"
+      (reset)="loadMarkets()"
+    ></app-markets-filter>
+  </mat-sidenav>
+
+  <mat-sidenav-content (click)="sidenav.close()">
+    <div class="content">
+      <app-markets-table
+        [markets]="markets$ | async"
+        (buy)="onBuy($event)"
+      ></app-markets-table>
+      <button
+        mat-fab
+        color="accent"
+        class="filter-button"
+        (click)="sidenav.toggle(); $event.stopPropagation()"
+      >
+        <mat-icon>filter_list</mat-icon>
+      </button>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,7 @@
+<div class="content">
+  <app-stocks-table
+    [stocks]="stocks$ | async"
+    [totalPrice]="totalPrice$ | async"
+    (sell)="onSell($event)"
+  ></app-stocks-table>
+</div>

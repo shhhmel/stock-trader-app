@@ -1,0 +1,37 @@
+<!-- <h2 class="mat-title">Filter</h2> -->
+<form class="filter-form" (ngSubmit)="onSubmit()">
+  <div class="filter-buttons">
+    <button class="filter-button" mat-raised-button (click)="onReset()">
+      Reset
+    </button>
+    <button
+      class="filter-button"
+      mat-raised-button
+      color="primary"
+      type="submit"
+    >
+      Apply Filter
+    </button>
+  </div>
+  <br />
+  <span class="control-label">Category: </span>
+  <mat-form-field>
+    <input
+      type="text"
+      aria-label="Number"
+      placeholder="Search Category"
+      matInput
+      #categoryVar
+      [formControl]="categotyControl"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let category of (filteredCategories | async)"
+        [value]="category"
+      >
+        {{ category }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

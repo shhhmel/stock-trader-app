@@ -2,3 +2,16 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.content {
+  margin-top: 36px;
+  padding: 36px;
+  padding-top: 0;
+  /* For "sticky" table header */
+  height: calc(100vh - 135px);
+  overflow: auto;
+}
+
+.text-center {
+  text-align: center;
+}

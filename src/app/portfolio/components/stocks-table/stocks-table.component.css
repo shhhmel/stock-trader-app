@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+}
+
+tr {
+  height: 68px !important;
+}
+
+.quantity-control,
+.sell-button {
+  visibility: hidden;
+}
+
+table tr:hover .quantity-control,
+table tr:hover .sell-button {
+  visibility: visible;
+}
+
+.table-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,9 @@
+.filter-button {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+
+:host .mat-drawer-container {
+  background-color: #fff;
+}

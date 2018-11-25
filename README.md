@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.
 
+## Start project localy
+
+Run `npm run start:proxy:mock:server` for a dev server and json-server together. Navigate to `http://localhost:4200/`.
+
+## json-server
+
+Run `npm run mock:server` for a json-server. Navigate to `http://localhost:3000/`.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

@@ -23,6 +23,7 @@ import { Stock } from '../../models/stock.model';
 export class PortfolioComponent implements OnInit {
   stocks$: Observable<Stock[]>;
   totalPrice$: Observable<any>;
+  loading$: Observable<boolean>;
   stocks: Stock[];
 
   constructor(
@@ -35,6 +36,7 @@ export class PortfolioComponent implements OnInit {
 
     this.stocks$ = this.store.pipe(select(fromStore.getAllStocks));
     this.totalPrice$ = this.store.pipe(select(fromStore.getTotalPrice));
+    this.loading$ = this.store.pipe(select(fromStore.getStocksLoading));
   }
 
   LoadStocks() {

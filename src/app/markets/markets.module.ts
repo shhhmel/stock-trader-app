@@ -13,6 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Modules
 import { CustomersRoutingModule } from './markets-routing.module';
@@ -49,7 +50,8 @@ import { MarketsFilterComponent } from './components/markets-filter/markets-filt
     MatSnackBarModule,
     MatIconModule,
     MatAutocompleteModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatProgressSpinnerModule
   ],
   entryComponents: [MarketsFilterComponent]
 })

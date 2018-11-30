@@ -301,14 +301,7 @@
       "category": "Technology"
     }
   ],
-  "stocks": [
-    {
-      "id": 1,
-      "market": "China Information Technology, Inc.",
-      "price": "391.70",
-      "count": 2
-    }
-  ],
+  "stocks": [],
   "balance": {
     "value": "10000.00"
   }

@@ -1,7 +1,23 @@
 <mat-toolbar>
-  <a mat-button routerLink="/markets" class="main-nav-link" routerLinkActive="active"> Markets </a>
-  <a mat-button routerLink="/portfolio" class="main-nav-link" routerLinkActive="active">
+  <a
+    mat-button
+    routerLink="/markets"
+    class="main-nav-link"
+    routerLinkActive="active"
+  >
+    Markets
+  </a>
+  <a
+    mat-button
+    routerLink="/portfolio"
+    class="main-nav-link"
+    routerLinkActive="active"
+  >
     Portfolio
   </a>
-  <span class="spacer"></span> <span class="balance">{{ '100.00' | currency: 'USD' }}</span>
+  <span class="spacer"></span>
+  <span class="balance">
+    <mat-icon class="balance-icon">account_balance</mat-icon>
+    {{ balance$ | async | currency: 'USD' }}
+  </span>
 </mat-toolbar>

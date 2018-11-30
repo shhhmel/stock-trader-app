@@ -10,6 +10,8 @@ import { environment } from '../environments/environment';
 import { StoreModule, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { reducers, effects } from './store';
+
 // not used in production
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeFreeze } from 'ngrx-store-freeze';
@@ -17,6 +19,7 @@ import { storeFreeze } from 'ngrx-store-freeze';
 // @angular/material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 // Modules
 import { AppRoutingModule } from './app-routing.module';
@@ -27,7 +30,9 @@ import { NavComponent } from './components/nav/nav.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 
-export const metaReducers: MetaReducer<any>[] = !environment.production ? [storeFreeze] : [];
+export const metaReducers: MetaReducer<any>[] = !environment.production
+  ? [storeFreeze]
+  : [];
 
 @NgModule({
   declarations: [AppComponent, NavComponent, PageNotFoundComponent],
@@ -35,15 +40,16 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot({}, { metaReducers }),
-    EffectsModule.forRoot([]),
+    AppRoutingModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
     }),
     MatToolbarModule,
     MatButtonModule,
-    AppRoutingModule
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

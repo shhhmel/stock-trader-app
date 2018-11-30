@@ -21,7 +21,7 @@ export class MarketsService {
         params: category ? new HttpParams().set('category', category) : null
       })
       .pipe(
-        delay(500),
+        delay(250),
         catchError((error: any) => throwError(error.json()))
       );
   }

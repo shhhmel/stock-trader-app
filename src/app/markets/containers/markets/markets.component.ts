@@ -23,6 +23,7 @@ import { Market } from '../../models/market.model';
 export class MarketsComponent implements OnInit {
   markets$: Observable<Market[]>;
   categories$: Observable<string[]>;
+  loading$: Observable<boolean>;
 
   constructor(
     private store: Store<fromStore.MarketFeatureState>,
@@ -31,7 +32,9 @@ export class MarketsComponent implements OnInit {
 
   ngOnInit() {
     this.loadMarkets();
+
     this.markets$ = this.store.pipe(select(fromStore.getAllMarkets));
+    this.loading$ = this.store.pipe(select(fromStore.getMarketsLoading));
     this.categories$ = this.store.pipe(
       select(fromStore.getMarketsCategories),
       take(2)

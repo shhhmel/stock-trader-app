@@ -8,7 +8,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content (click)="sidenav.close()">
-    <div class="content">
+    <div class="content" *ngIf="!(loading$ | async); else: loading">
       <app-markets-table
         [markets]="markets$ | async"
         (buy)="onBuy($event)"
@@ -22,5 +22,8 @@
         <mat-icon>filter_list</mat-icon>
       </button>
     </div>
+    <ng-template #loading>
+      <div class="spinner-wrapper"><mat-spinner></mat-spinner></div>
+    </ng-template>
   </mat-sidenav-content>
 </mat-sidenav-container>

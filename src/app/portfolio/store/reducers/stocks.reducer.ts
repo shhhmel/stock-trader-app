@@ -43,6 +43,56 @@ export function reducer(
         loaded: false
       };
     }
+
+    case fromStocks.UPDATE_STOCKS: {
+      const stock = action.payload;
+      const index = state.data.findIndex(el => el.id === stock.id);
+      let data = [...state.data];
+      if (index !== -1) {
+        data = [
+          ...state.data.slice(0, index),
+          { ...stock },
+          ...state.data.slice(index + 1)
+        ];
+      } else {
+        data.push(stock);
+      }
+      return {
+        ...state,
+        data
+      };
+    }
+
+    case fromStocks.UPDATE_STOCK_SUCCESS_UPDATE: {
+      const stock = action.payload;
+      const index = state.data.findIndex(el => el.id === stock.id);
+
+      const data = [
+        ...state.data.slice(0, index),
+        stock,
+        ...state.data.slice(index + 1)
+      ];
+
+      return {
+        ...state,
+        data
+      };
+    }
+
+    case fromStocks.UPDATE_STOCK_SUCCESS_DELETE: {
+      const stock = action.payload;
+      const index = state.data.findIndex(el => el.id === stock.id);
+
+      const data = [
+        ...state.data.slice(0, index),
+        ...state.data.slice(index + 1)
+      ];
+
+      return {
+        ...state,
+        data
+      };
+    }
   }
 
   return state;

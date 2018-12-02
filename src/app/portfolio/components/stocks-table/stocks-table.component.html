@@ -33,23 +33,23 @@
   <!-- Quantity Column -->
   <ng-container matColumnDef="quantity">
     <th mat-header-cell *matHeaderCellDef>Quantity</th>
-    <td mat-cell *matCellDef="let element">
+    <td mat-cell *matCellDef="let element; let i = index">
       <mat-form-field
         style="width: 110px"
         class="quantity-control"
         [ngClass]="{
-          'mat-form-field-invalid': quantInput.value > element.count
+          'mat-form-field-invalid': quants[i] > element.count
         }"
       >
         <input
           matInput
           type="number"
+          [(ngModel)]="quants[i]"
           min="0"
           [max]="element.count"
           placeholder="Quantity"
-          #quantInput
         />
-        <mat-hint *ngIf="quantInput.value > element.count">
+        <mat-hint *ngIf="quants[i] > element.count">
           More than you have
         </mat-hint>
       </mat-form-field>

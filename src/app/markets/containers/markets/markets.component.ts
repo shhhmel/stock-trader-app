@@ -1,12 +1,10 @@
 // Angular
 import { Component, OnInit } from '@angular/core';
 
-// @angular/material
-import { MatSnackBar } from '@angular/material/snack-bar';
-
 // @ngrx
 import { Store, select } from '@ngrx/store';
 import * as fromStore from '../../store';
+import * as fromStocksStore from '../../../portfolio/store';
 
 // RxJS
 import { Observable } from 'rxjs';
@@ -25,10 +23,7 @@ export class MarketsComponent implements OnInit {
   categories$: Observable<string[]>;
   loading$: Observable<boolean>;
 
-  constructor(
-    private store: Store<fromStore.MarketFeatureState>,
-    private snackBar: MatSnackBar
-  ) {}
+  constructor(private store: Store<fromStore.MarketFeatureState>) {}
 
   ngOnInit() {
     this.loadMarkets();
@@ -39,6 +34,8 @@ export class MarketsComponent implements OnInit {
       select(fromStore.getMarketsCategories),
       take(2)
     );
+
+    this.store.dispatch(new fromStocksStore.LoadStocks());
   }
 
   loadMarkets(category?: string) {
@@ -46,20 +43,6 @@ export class MarketsComponent implements OnInit {
   }
 
   onBuy({ quant, market }): void {
-    // ------------
-    // NGRX DISPATCH BUY
-    // ------------
-    this.showBuyMessage(quant, market.name);
-  }
-
-  showBuyMessage(quant: number, name: string): void {
-    const message =
-      quant > 1
-        ? `${quant} "${name}" were added to your Portfolio`
-        : `${quant} "${name}" was added to your Portfolio`;
-    this.snackBar.open(message, '', {
-      duration: 5000,
-      verticalPosition: 'top'
-    });
+    this.store.dispatch(new fromStore.BuyMarket({ quant, market }));
   }
 }

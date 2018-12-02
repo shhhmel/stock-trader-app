@@ -9,7 +9,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Modules
@@ -39,7 +38,6 @@ import { StocksTableComponent } from './components/stocks-table/stocks-table.com
     MatInputModule,
     MatButtonModule,
     MatSortModule,
-    MatSnackBarModule,
     MatProgressSpinnerModule
   ]
 })

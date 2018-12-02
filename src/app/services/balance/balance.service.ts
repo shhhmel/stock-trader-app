@@ -16,9 +16,13 @@ export class BalanceService {
   constructor(private http: HttpClient) {}
 
   getBalance(): Observable<Balance> {
-    return this.http.get<Balance>(`/api/balance`).pipe(
-      delay(250),
-      catchError((error: any) => throwError(error.json()))
-    );
+    return this.http.get<Balance>(`/api/balance`);
+  }
+
+  updateBalance(payload): Observable<Balance> {
+    payload = payload.toFixed(2);
+    return this.http.put<Balance>(`/api/balance`, {
+      value: payload
+    });
   }
 }

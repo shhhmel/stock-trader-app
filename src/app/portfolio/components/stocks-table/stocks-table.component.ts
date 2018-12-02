@@ -2,8 +2,6 @@
 import {
   Component,
   OnInit,
-  ViewChildren,
-  ElementRef,
   ViewChild,
   Input,
   Output,
@@ -32,11 +30,11 @@ export class StocksTableComponent implements OnInit, OnChanges {
     stock: Stock;
   }> = new EventEmitter();
 
-  @ViewChildren('quantInput') quantInputs;
   @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[] = ['market', 'price', 'count', 'quantity', 'sell'];
   dataSource: MatTableDataSource<Stock>;
+  quants = [];
 
   constructor() {}
 
@@ -46,8 +44,15 @@ export class StocksTableComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.stocks && !changes.stocks.firstChange) {
+      this.initQuants();
       this.renderTable();
     }
+  }
+
+  initQuants() {
+    this.stocks.forEach(() => {
+      this.quants.push('');
+    });
   }
 
   renderTable() {
@@ -56,17 +61,12 @@ export class StocksTableComponent implements OnInit, OnChanges {
   }
 
   onSell(i: string, stock: Stock): void {
-    const input = this.quantInputs._results[i];
-    const values = this.quantInputs._results.map((el: ElementRef) => {
-      return el.nativeElement.value;
-    });
-    let currentValue = parseInt(values[i], 10);
+    let currentValue = parseInt(this.quants[i], 10);
 
     currentValue = currentValue > stock.count ? 0 : currentValue;
 
     if (currentValue) {
-      input.nativeElement.value = '';
-      input.nativeElement.dispatchEvent(new Event('input'));
+      this.quants[i] = '';
       this.sell.emit({ quant: currentValue, stock: stock });
     }
   }

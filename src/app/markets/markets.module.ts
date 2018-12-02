@@ -9,7 +9,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -17,6 +16,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Modules
 import { CustomersRoutingModule } from './markets-routing.module';
+import { PortfolioModule } from '../portfolio/portfolio.module';
 
 // @ngrx
 import { StoreModule } from '@ngrx/store';
@@ -41,13 +41,13 @@ import { MarketsFilterComponent } from './components/markets-filter/markets-filt
     CustomersRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    PortfolioModule,
     StoreModule.forFeature('markets-feature', reducers),
     EffectsModule.forFeature(effects),
     MatTableModule,
     MatInputModule,
     MatButtonModule,
     MatSortModule,
-    MatSnackBarModule,
     MatIconModule,
     MatAutocompleteModule,
     MatSidenavModule,

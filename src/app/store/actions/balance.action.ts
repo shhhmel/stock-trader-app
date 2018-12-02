@@ -22,5 +22,17 @@ export class LoadBalanceSuccess implements Action {
   constructor(public payload: Balance) {}
 }
 
+// change balance
+export const UPDATE_BALANCE = '[Nav] Update Balance';
+
+export class UpdateBalance implements Action {
+  readonly type = UPDATE_BALANCE;
+  constructor(public payload: number) {}
+}
+
 // action types
-export type BalanceActions = LoadBalance | LoadBalanceFail | LoadBalanceSuccess;
+export type BalanceActions =
+  | LoadBalance
+  | LoadBalanceFail
+  | LoadBalanceSuccess
+  | UpdateBalance;

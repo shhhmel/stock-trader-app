@@ -2,8 +2,6 @@
 import {
   Component,
   OnInit,
-  ViewChildren,
-  ElementRef,
   ViewChild,
   Input,
   Output,
@@ -31,11 +29,12 @@ export class MarketsTableComponent implements OnInit, OnChanges {
     market: Market;
   }> = new EventEmitter();
 
-  @ViewChildren('quantInput') quantInputs;
   @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[] = ['name', 'price', 'category', 'quantity', 'buy'];
   dataSource: MatTableDataSource<Market>;
+
+  quants = [];
 
   constructor() {}
 
@@ -51,16 +50,17 @@ export class MarketsTableComponent implements OnInit, OnChanges {
     }
   }
 
-  onBuy(i: string, market: Market): void {
-    const input = this.quantInputs._results[i];
-    const values = this.quantInputs._results.map((el: ElementRef) => {
-      return el.nativeElement.value;
+  initQuants() {
+    this.markets.forEach(() => {
+      this.quants.push('');
     });
-    const currentValue = parseInt(values[i], 10);
+  }
+
+  onBuy(i: string, market: Market): void {
+    const currentValue = parseInt(this.quants[i], 10);
 
     if (currentValue) {
-      input.nativeElement.value = '';
-      input.nativeElement.dispatchEvent(new Event('input'));
+      this.quants[i] = '';
       this.buy.emit({ quant: currentValue, market: market });
     }
   }

@@ -23,5 +23,31 @@ export class LoadMarketsSuccess implements Action {
   constructor(public payload: Market[]) {}
 }
 
+// buy market
+export const BUY_MARKET = '[Markets] Buy Market';
+export const BUY_MARKET_FAIL = '[Markets] Buy Market Fail';
+export const BUY_MARKET_SUCCESS = '[Markets] Buy Market Success';
+
+export class BuyMarket implements Action {
+  readonly type = BUY_MARKET;
+  constructor(public payload: { quant: number; market: Market }) {}
+}
+
+export class BuyMarketFail implements Action {
+  readonly type = BUY_MARKET_FAIL;
+  constructor(public payload: any) {}
+}
+
+export class BuyMarketSuccess implements Action {
+  readonly type = BUY_MARKET_SUCCESS;
+  constructor(public payload: number) {}
+}
+
 // action types
-export type MarketsActions = LoadMarkets | LoadMarketsFail | LoadMarketsSuccess;
+export type MarketsActions =
+  | LoadMarkets
+  | LoadMarketsFail
+  | LoadMarketsSuccess
+  | BuyMarket
+  | BuyMarketFail
+  | BuyMarketSuccess;

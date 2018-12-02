@@ -36,7 +36,7 @@ export class StocksService {
 
   deleteStock(payload): Observable<Stock> {
     return this.http
-      .delete<Stock>(`/api/stocks${payload.id}`)
+      .delete<Stock>(`/api/stocks/${payload.id}`)
       .pipe(catchError((error: any) => throwError(error.json())));
   }
 }

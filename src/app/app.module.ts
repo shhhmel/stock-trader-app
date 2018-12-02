@@ -20,6 +20,7 @@ import { storeFreeze } from 'ngrx-store-freeze';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Modules
 import { AppRoutingModule } from './app-routing.module';
@@ -49,7 +50,8 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     }),
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
